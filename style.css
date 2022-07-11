@@ -1,0 +1,52 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+  background-color: #444;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  height: 90vh;
+  min-width: 20vw;
+  margin: 1rem;
+  color: #000;
+}
+
+table tr th {
+  color: #fff;
+}
+
+table tr:nth-child(odd) td {
+  background-color: #ddd;
+}
+
+table tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+table td {
+  padding: 1rem;
+}
+
+.stage {
+  text-align: left;
+}
+
+.km {
+  text-align: right;
+}

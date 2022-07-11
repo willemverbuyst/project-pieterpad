@@ -5,132 +5,127 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      table {
-        border-collapse: collapse;
-      }
-
-      table tr:nth-child(odd) td {
-        background-color: #ddd;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
   </head>
   <body>
-    <div>
+    <div class="container">
       <div>
-        <table style="height: 90vh; min-width: 20vw">
+        <table>
+          <thead>
+            <tr>
+              <th class="stage">Etappes</th>
+              <th class="km">km</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
-              <th style="text-align: left">Etappes</th>
-              <th style="text-align: right">km</th>
+              <td class="stage">Epiloog</td>
+              <td class="km">10</td>
             </tr>
             <tr>
-              <td>Epiloog</td>
-              <td style="text-align: right">10</td>
+              <td class="stage">Pieterburen - Winsum</td>
+              <td class="km">12</td>
             </tr>
             <tr>
-              <td>Pieterburen - Winsum</td>
-              <td style="text-align: right">12</td>
+              <td class="stage">Winsum - Groningen</td>
+              <td class="km">22</td>
             </tr>
             <tr>
-              <td>Winsum - Groningen</td>
-              <td style="text-align: right">22</td>
+              <td class="stage">Groningen - Zuidlaren</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Groningen - Zuidlaren</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Zuidlaren - Rolde</td>
+              <td class="km">17</td>
             </tr>
             <tr>
-              <td>Zuidlaren - Rolde</td>
-              <td style="text-align: right">17</td>
+              <td class="stage">Rolde - Schoonloo</td>
+              <td class="km">18</td>
             </tr>
             <tr>
-              <td>Rolde - Schoonloo</td>
-              <td style="text-align: right">18</td>
+              <td class="stage">Schoonloo - Sleen</td>
+              <td class="km">23</td>
             </tr>
             <tr>
-              <td>Schoonloo - Sleen</td>
-              <td style="text-align: right">23</td>
+              <td class="stage">Sleen - Coevorden</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Sleen - Coevorden</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Coevorden - Hardenberg</td>
+              <td class="km">19</td>
             </tr>
             <tr>
-              <td>Coevorden - Hardenberg</td>
-              <td style="text-align: right">19</td>
+              <td class="stage">Hardenberg - Ommen</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Hardenberg - Ommen</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Ommen - Hellendoorn</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Ommen - Hellendoorn</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Hellendoorn - Holten</td>
+              <td class="km">15</td>
             </tr>
             <tr>
-              <td>Hellendoorn - Holten</td>
-              <td style="text-align: right">15</td>
+              <td class="stage">Holten - Laren</td>
+              <td class="km">15</td>
             </tr>
             <tr>
-              <td>Holten - Laren</td>
-              <td style="text-align: right">15</td>
-            </tr>
-            <tr style="border-color: #000000">
-              <td>Laren - Vorden</td>
-              <td style="text-align: right">14</td>
+              <td class="stage">Laren - Vorden</td>
+              <td class="km">14</td>
             </tr>
             <tr>
-              <td>Vorden - Zelhem</td>
-              <td style="text-align: right">17</td>
+              <td class="stage">Vorden - Zelhem</td>
+              <td class="km">17</td>
             </tr>
             <tr>
-              <td>Zelhem - Braamt</td>
-              <td style="text-align: right">17</td>
+              <td class="stage">Zelhem - Braamt</td>
+              <td class="km">17</td>
             </tr>
             <tr>
-              <td>Braamt - Millingen a/d Rijn</td>
-              <td style="text-align: right">24</td>
+              <td class="stage">Braamt - Millingen a/d Rijn</td>
+              <td class="km">24</td>
             </tr>
             <tr>
-              <td>Millingen a/d Rijn - Groesbeek</td>
-              <td style="text-align: right">20</td>
+              <td class="stage">Millingen a/d Rijn - Groesbeek</td>
+              <td class="km">20</td>
             </tr>
             <tr>
-              <td>Groesbeek - Gennep</td>
-              <td style="text-align: right">14</td>
+              <td class="stage">Groesbeek - Gennep</td>
+              <td class="km">14</td>
             </tr>
             <tr>
-              <td>Gennep - Vierlingsbeek</td>
-              <td style="text-align: right">18</td>
+              <td class="stage">Gennep - Vierlingsbeek</td>
+              <td class="km">18</td>
             </tr>
             <tr>
-              <td>Vierlingsbeek - Swolgen</td>
-              <td style="text-align: right">23</td>
+              <td class="stage">Vierlingsbeek - Swolgen</td>
+              <td class="km">23</td>
             </tr>
             <tr>
-              <td>Swolgen - Venlo</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Swolgen - Venlo</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Venlo - Swalmen</td>
-              <td style="text-align: right">23</td>
+              <td class="stage">Venlo - Swalmen</td>
+              <td class="km">23</td>
             </tr>
             <tr>
-              <td>Swalmen - Montfort</td>
-              <td style="text-align: right">21</td>
+              <td class="stage">Swalmen - Montfort</td>
+              <td class="km">21</td>
             </tr>
             <tr>
-              <td>Montfort - Sittard</td>
-              <td style="text-align: right">23</td>
+              <td class="stage">Montfort - Sittard</td>
+              <td class="km">23</td>
             </tr>
             <tr>
-              <td>Sittard - Strabeek</td>
-              <td style="text-align: right">22</td>
+              <td class="stage">Sittard - Strabeek</td>
+              <td class="km">22</td>
             </tr>
             <tr>
-              <td>Strabeek - Sint Pietersberg</td>
-              <td style="text-align: right">17</td>
+              <td class="stage">Strabeek - Sint Pietersberg</td>
+              <td class="km">17</td>
             </tr>
           </tbody>
         </table>
