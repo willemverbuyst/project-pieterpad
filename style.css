@@ -18,6 +18,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Nunito', sans-serif;
   text-align: center;
   color: var(--color-black);
   background-color: var(--color-background);
@@ -50,7 +51,7 @@ table tr:nth-child(odd) td {
 
 table td,
 table th {
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .stage {
