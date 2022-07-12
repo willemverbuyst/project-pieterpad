@@ -45,12 +45,14 @@ const tableData = [
 
 const tableDataNorth = tableData.filter((data) => data.section === 'North');
 const tableDataSouth = tableData.filter((data) => data.section === 'South');
+
 const table = document.createElement('table');
 const thead = document.createElement('thead');
 const tbody = document.createElement('tbody');
 
 table.appendChild(thead);
 table.appendChild(tbody);
+
 document.getElementById('container').appendChild(table);
 
 function createTitles(titles) {
@@ -63,7 +65,7 @@ function createTitles(titles) {
     row.appendChild(header);
   });
 
-  thead.appendChild(headerRow);
+  thead.appendChild(row);
 }
 
 function createTableRow(dataForTable) {
