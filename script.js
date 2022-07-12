@@ -1,31 +1,46 @@
 const tableData = [
-  { ettape: 'Epiloog', km: 10 },
-  { ettape: 'Pieterburen - Winsum', km: 12 },
-  { ettape: 'Winsum - Groningen', km: 22 },
-  { ettape: 'Groningen - Zuidlaren', km: 21 },
-  { ettape: 'Zuidlaren - Rolde', km: 17 },
-  { ettape: 'Rolde - Schoonloo', km: 18 },
-  { ettape: 'Schoonloo - Sleen', km: 23 },
-  { ettape: 'Sleen - Coevorden', km: 21 },
-  { ettape: 'Coevorden - Hardenberg', km: 19 },
-  { ettape: 'Hardenberg - Ommen', km: 21 },
-  { ettape: 'Ommen - Hellendoorn', km: 21 },
-  { ettape: 'Hellendoorn - Holten', km: 15 },
-  { ettape: 'Holten - Laren', km: 15 },
-  { ettape: 'Laren - Vorden', km: 14 },
-  { ettape: 'Vorden - Zelhem', km: 17 },
-  { ettape: 'Zelhem - Braamt', km: 17 },
-  { ettape: 'Braamt - Millingen a/d Rijn', km: 24 },
-  { ettape: 'Millingen a/d Rijn - Groesbeek', km: 20 },
-  { ettape: 'Groesbeek - Gennep', km: 14 },
-  { ettape: 'Gennep - Vierlingsbeek', km: 18 },
-  { ettape: 'Vierlingsbeek - Swolgen', km: 23 },
-  { ettape: 'Swolgen - Venlo', km: 21 },
-  { ettape: 'Venlo - Swalmen', km: 23 },
-  { ettape: 'Swalmen - Montfort', km: 21 },
-  { ettape: 'Montfort - Sittard', km: 23 },
-  { ettape: 'Sittard - Strabeek', km: 22 },
-  { ettape: 'Strabeek - Sint Pietersberg', km: 17 },
+  { from: 'Epiloog', km: 10, section: 'Noord' },
+  { from: 'Pieterburen', to: 'Winsum', km: 12, section: 'Noord' },
+  { from: 'Winsum', to: 'Groningen', km: 22, section: 'Noord' },
+  { from: 'Groningen', to: 'Zuidlaren', km: 21, section: 'Noord' },
+  { from: 'Zuidlaren', to: 'Rolde', km: 17, section: 'Noord' },
+  { from: 'Rolde', to: 'Schoonloo', km: 18, section: 'Noord' },
+  { from: 'Schoonloo', to: 'Sleen', km: 23, section: 'Noord' },
+  { from: 'Sleen', to: 'Coevorden', km: 21, section: 'Noord' },
+  { from: 'Coevorden', to: 'Hardenberg', km: 19, section: 'Noord' },
+  { from: 'Hardenberg', to: 'Ommen', km: 21, section: 'Noord' },
+  { from: 'Ommen', to: 'Hellendoorn', km: 21, section: 'Noord' },
+  { from: 'Hellendoorn', to: 'Holten', km: 15, section: 'Noord' },
+  { from: 'Holten', to: 'Laren', km: 15, section: 'Noord' },
+  { from: 'Laren', to: 'Vorden', km: 14, section: 'Noord' },
+  { from: 'Vorden', to: 'Zelhem', km: 17, section: 'Zuid' },
+  { from: 'Zelhem', to: 'Braamt', km: 17, section: 'Zuid' },
+  {
+    from: 'Braamt',
+    to: 'Millingen a/d Rijn',
+    km: 24,
+    section: 'Zuid',
+  },
+  {
+    from: 'Millingen a/d Rijn',
+    to: 'Groesbeek',
+    km: 20,
+    section: 'Zuid',
+  },
+  { from: 'Groesbeek', to: 'Gennep', km: 14, section: 'Zuid' },
+  { from: 'Gennep', to: 'Vierlingsbeek', km: 18, section: 'Zuid' },
+  { from: 'Vierlingsbeek', to: 'Swolgen', km: 23, section: 'Zuid' },
+  { from: 'Swolgen', to: 'Venlo', km: 21, section: 'Zuid' },
+  { from: 'Venlo', to: 'Swalmen', km: 23, section: 'Zuid' },
+  { from: 'Swalmen', to: 'Montfort', km: 21, section: 'Zuid' },
+  { from: 'Montfort', to: 'Sittard', km: 23, section: 'Zuid' },
+  { from: 'Sittard', to: 'Strabeek', km: 22, section: 'Zuid' },
+  {
+    from: 'Strabeek',
+    to: 'Sint Pietersberg',
+    km: 17,
+    section: 'Zuid',
+  },
 ];
 
 const table = document.createElement('table');
@@ -38,25 +53,39 @@ table.appendChild(tbody);
 document.getElementById('container').appendChild(table);
 
 const headerRow = document.createElement('tr');
+
 const headerStage = document.createElement('th');
-headerStage.innerText = 'Etappes';
+headerStage.innerText = 'etappe';
+
+const headerFrom = document.createElement('th');
+headerFrom.innerText = 'van';
+
+const headerTo = document.createElement('th');
+headerTo.innerText = 'naar';
+
 const headerKM = document.createElement('th');
-headerKM.classList.add('km');
 headerKM.innerText = 'km';
 
 headerRow.appendChild(headerStage);
+headerRow.appendChild(headerFrom);
+headerRow.appendChild(headerTo);
 headerRow.appendChild(headerKM);
 thead.appendChild(headerRow);
 
-tableData.forEach((data) => {
+tableData.forEach((data, i) => {
   const row = document.createElement('tr');
   const etappe = document.createElement('td');
-  etappe.innerText = data.ettape;
+  etappe.innerText = i;
+  const from = document.createElement('td');
+  from.innerText = data.from;
+  const to = document.createElement('td');
+  to.innerText = data.to;
   const km = document.createElement('td');
-  km.classList.add('km');
   km.innerText = data.km;
 
   row.appendChild(etappe);
+  row.appendChild(from);
+  row.appendChild(to);
   row.appendChild(km);
   tbody.appendChild(row);
 });
