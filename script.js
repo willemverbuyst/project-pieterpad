@@ -1,5 +1,5 @@
 const tableData = [
-  { from: 'Epiloog', km: 10, section: 'Noord' },
+  { from: 'Epiloog', to: '', km: 10, section: 'Noord' },
   { from: 'Pieterburen', to: 'Winsum', km: 12, section: 'Noord' },
   { from: 'Winsum', to: 'Groningen', km: 22, section: 'Noord' },
   { from: 'Groningen', to: 'Zuidlaren', km: 21, section: 'Noord' },
@@ -56,15 +56,19 @@ const headerRow = document.createElement('tr');
 
 const headerStage = document.createElement('th');
 headerStage.innerText = 'etappe';
+headerStage.classList.add('stage');
 
 const headerFrom = document.createElement('th');
 headerFrom.innerText = 'van';
+headerFrom.classList.add('from');
 
 const headerTo = document.createElement('th');
 headerTo.innerText = 'naar';
+headerTo.classList.add('to');
 
 const headerKM = document.createElement('th');
 headerKM.innerText = 'km';
+headerKM.classList.add('km');
 
 headerRow.appendChild(headerStage);
 headerRow.appendChild(headerFrom);
@@ -74,16 +78,24 @@ thead.appendChild(headerRow);
 
 tableData.forEach((data, i) => {
   const row = document.createElement('tr');
-  const etappe = document.createElement('td');
-  etappe.innerText = i;
+
+  const stage = document.createElement('td');
+  stage.innerText = i;
+  stage.classList.add('stage');
+
   const from = document.createElement('td');
   from.innerText = data.from;
+  from.classList.add('from');
+
   const to = document.createElement('td');
   to.innerText = data.to;
+  to.classList.add('to');
+
   const km = document.createElement('td');
   km.innerText = data.km;
+  km.classList.add('km');
 
-  row.appendChild(etappe);
+  row.appendChild(stage);
   row.appendChild(from);
   row.appendChild(to);
   row.appendChild(km);

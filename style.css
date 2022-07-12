@@ -49,21 +49,13 @@ table tr:nth-child(odd) td {
   background-color: var(--color-grey-light);
 }
 
-table td:nth-child(even),
-table th:nth-child(even) {
-  text-align: right;
-}
-
-table td:nth-child(odd),
-table th:nth-child(odd) {
-  text-align: left;
-}
-
 table td,
 table th {
   padding: 0.8rem;
 }
 
+.from,
+.to,
 .stage {
   text-align: left;
 }
