@@ -39,7 +39,6 @@ document.getElementById('container').appendChild(table);
 
 const headerRow = document.createElement('tr');
 const headerStage = document.createElement('th');
-headerStage.classList.add('stage');
 headerStage.innerText = 'Etappes';
 const headerKM = document.createElement('th');
 headerKM.classList.add('km');
@@ -52,7 +51,6 @@ thead.appendChild(headerRow);
 tableData.forEach((data) => {
   const row = document.createElement('tr');
   const etappe = document.createElement('td');
-  etappe.classList.add('stage');
   etappe.innerText = data.ettape;
   const km = document.createElement('td');
   km.classList.add('km');
