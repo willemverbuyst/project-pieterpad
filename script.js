@@ -1,5 +1,5 @@
 const tableData = [
-  { from: '', to: '', km: 10, section: 'Epiloog' },
+  { from: '', to: '', km: 10, section: 'Epilogue' },
   { from: 'Pieterburen', to: 'Winsum', km: 12, section: 'North' },
   { from: 'Winsum', to: 'Groningen', km: 22, section: 'North' },
   { from: 'Groningen', to: 'Southlaren', km: 21, section: 'North' },
@@ -43,6 +43,7 @@ const tableData = [
   },
 ];
 
+const epiloog = tableData[0];
 const tableDataNorth = tableData.filter((data) => data.section === 'North');
 const tableDataSouth = tableData.filter((data) => data.section === 'South');
 
@@ -53,7 +54,7 @@ const tbody = document.createElement('tbody');
 table.appendChild(thead);
 table.appendChild(tbody);
 
-document.getElementById('container').appendChild(table);
+document.getElementById('tableContainer').appendChild(table);
 
 function createTitles(titles) {
   const row = document.createElement('tr');
@@ -68,6 +69,8 @@ function createTitles(titles) {
   thead.appendChild(row);
 }
 
+let counter = 0;
+
 function createTableRow(dataForTable) {
   const row = document.createElement('tr');
   const header = document.createElement('td');
@@ -77,11 +80,11 @@ function createTableRow(dataForTable) {
   row.appendChild(header);
   tbody.appendChild(row);
 
-  dataForTable.forEach((data, i) => {
+  dataForTable.forEach((data) => {
     const row = document.createElement('tr');
 
     const stage = document.createElement('td');
-    stage.innerText = i;
+    stage.innerText = counter;
     stage.classList.add('stage');
 
     const from = document.createElement('td');
@@ -101,9 +104,12 @@ function createTableRow(dataForTable) {
     row.appendChild(to);
     row.appendChild(km);
     tbody.appendChild(row);
+
+    counter += 1;
   });
 }
 
 createTitles(['stage', 'from', 'to', 'km']);
+createTableRow([epiloog]);
 createTableRow(tableDataNorth);
 createTableRow(tableDataSouth);
