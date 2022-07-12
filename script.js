@@ -1,5 +1,5 @@
 const tableData = [
-  { from: 'Epiloog', to: '', km: 10, section: 'Noord' },
+  { from: '', to: '', km: 10, section: 'Epiloog' },
   { from: 'Pieterburen', to: 'Winsum', km: 12, section: 'Noord' },
   { from: 'Winsum', to: 'Groningen', km: 22, section: 'Noord' },
   { from: 'Groningen', to: 'Zuidlaren', km: 21, section: 'Noord' },
@@ -43,6 +43,9 @@ const tableData = [
   },
 ];
 
+const tableDataNorth = tableData.filter((data) => data.section === 'Noord');
+const tableDataSouth = tableData.filter((data) => data.section === 'Zuid');
+
 const table = document.createElement('table');
 const thead = document.createElement('thead');
 const tbody = document.createElement('tbody');
@@ -76,7 +79,47 @@ headerRow.appendChild(headerTo);
 headerRow.appendChild(headerKM);
 thead.appendChild(headerRow);
 
-tableData.forEach((data, i) => {
+const northRow = document.createElement('tr');
+const northHeader = document.createElement('td');
+northHeader.colSpan = 4;
+northHeader.innerText = 'Noord';
+northHeader.classList.add('header');
+tbody.appendChild(northHeader);
+
+tableDataNorth.forEach((data, i) => {
+  const row = document.createElement('tr');
+
+  const stage = document.createElement('td');
+  stage.innerText = i;
+  stage.classList.add('stage');
+
+  const from = document.createElement('td');
+  from.innerText = data.from;
+  from.classList.add('from');
+
+  const to = document.createElement('td');
+  to.innerText = data.to;
+  to.classList.add('to');
+
+  const km = document.createElement('td');
+  km.innerText = data.km;
+  km.classList.add('km');
+
+  row.appendChild(stage);
+  row.appendChild(from);
+  row.appendChild(to);
+  row.appendChild(km);
+  tbody.appendChild(row);
+});
+
+const southRow = document.createElement('tr');
+const southHeader = document.createElement('td');
+southHeader.colSpan = 4;
+southHeader.innerText = 'Zuid';
+southHeader.classList.add('header');
+tbody.appendChild(southHeader);
+
+tableDataSouth.forEach((data, i) => {
   const row = document.createElement('tr');
 
   const stage = document.createElement('td');

@@ -41,7 +41,7 @@ table {
 }
 
 table tr th {
-  background-color: var(--color-3);
+  background-color: var(--color-5);
   color: var(--color-white);
 }
 
@@ -62,4 +62,10 @@ table th {
 
 .km {
   text-align: right;
+}
+
+.header {
+  color: var(--color-white);
+  background-color: var(--color-3);
+  text-align: left;
 }
