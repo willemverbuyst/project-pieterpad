@@ -8,7 +8,7 @@
     "dev": "nodemon",
     "start": "ts-node ./src/index.ts",
     "test": "jest",
-    "test:all": "jest --watch --verbose",
+    "test:all": "jest --watchAll --verbose",
     "test:coverage": "jest --coverage"
   },
   "devDependencies": {

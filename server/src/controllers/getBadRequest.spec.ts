@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getInfoController } from './getInfo';
+import { getBadRequestController } from './getBadRequest';
 
 const mockRequest = () => {
   const req = {} as Request;
@@ -15,17 +15,19 @@ const mockResponse = () => {
 
 const mockNext = () => jest.fn();
 
-describe('getInfoController', () => {
-  it('should return 200 with message', () => {
+describe('getBadRequestController', () => {
+  it('should return 404 with message', () => {
     const req = mockRequest();
     const res = mockResponse();
     const next = mockNext();
 
-    getInfoController(req, res, next);
+    getBadRequestController(req, res, next);
 
-    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledWith(404);
     expect(res.send).toHaveBeenCalledTimes(1);
-    expect(res.send).toHaveBeenCalledWith({ message: 'hello from the server' });
+    expect(res.send).toHaveBeenCalledWith({
+      message: 'Oops 404, page not found',
+    });
     expect(next).not.toHaveBeenCalled();
   });
 });

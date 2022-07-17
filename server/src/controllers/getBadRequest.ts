@@ -1,16 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../config/log';
 
-export const getBadRequestController = async (
+export const getBadRequestController = (
   _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
-  try {
-    logger.info('bad request');
-    res.status(404).send({ message: 'Oops 404, page not found' });
-  } catch (error) {
-    logger.error(error);
-    res.status(500).send({ message: 'something went wrong' });
-  }
+  logger.info('bad request');
+  res.status(404).send({ message: 'Oops 404, page not found' });
 };
