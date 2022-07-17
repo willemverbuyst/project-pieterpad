@@ -2,7 +2,7 @@ import morgan, { StreamOptions } from 'morgan';
 import { logger } from './log';
 
 const stream: StreamOptions = {
-  write: (message) => logger.info(message),
+  write: (message) => logger.http(message),
 };
 
 const skip = (): boolean => {
