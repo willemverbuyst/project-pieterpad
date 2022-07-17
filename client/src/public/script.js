@@ -1,5 +1,5 @@
 window.addEventListener('load', async () => {
-  fetch('http:localhost:4000/v1/pieterpad')
+  fetch('http://localhost:4000/v1/pieterpad')
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
