@@ -1,16 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../config/log';
 
-export const getInfoController = async (
+export const getInfoController = (
   _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
-  try {
-    logger.info('request for info');
-    res.status(200).send({ message: 'hello from the server' });
-  } catch (error) {
-    logger.error(error);
-    res.status(500).send({ message: 'something went wrong' });
-  }
+  logger.info('request for info');
+  res.status(200).send({ message: 'hello from the server' });
 };
