@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import pieterpadData from '../../../data/pieterpad.json';
+import { Request, Response, NextFunction } from 'express'
+import pieterpadData from '../../../data/pieterpad.json'
 
 export const getPieterpadController = (
   _req: Request,
@@ -10,5 +10,5 @@ export const getPieterpadController = (
     message: 'data for pieterpad',
     data: pieterpadData,
     status: 'succes',
-  });
-};
+  })
+}

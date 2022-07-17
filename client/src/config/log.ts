@@ -1,4 +1,4 @@
-import { createLogger, transports, format } from 'winston';
+import { createLogger, transports, format } from 'winston'
 
 export const logger = createLogger({
   transports: [new transports.Console()],
@@ -6,7 +6,7 @@ export const logger = createLogger({
     format.colorize(),
     format.timestamp(),
     format.printf(({ timestamp, level, message }) => {
-      return `[${timestamp}] CLIENT ${level}: ${message}`;
+      return `[${timestamp}] CLIENT ${level}: ${message}`
     })
   ),
-});
+})

@@ -1,4 +1,4 @@
-import { createLogger, transports, format } from 'winston';
+import { createLogger, transports, format } from 'winston'
 
 const logLevels = {
   fatal: 0,
@@ -7,7 +7,7 @@ const logLevels = {
   http: 3,
   info: 4,
   debug: 5,
-};
+}
 
 export const logger = createLogger({
   levels: logLevels,
@@ -16,7 +16,7 @@ export const logger = createLogger({
     format.colorize(),
     format.timestamp(),
     format.printf(({ timestamp, level, message }) => {
-      return `[${timestamp}] SERVER ${level}: ${message}`;
+      return `[${timestamp}] SERVER ${level}: ${message}`
     })
   ),
-});
+})
