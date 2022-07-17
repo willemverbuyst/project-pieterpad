@@ -24,7 +24,7 @@ const mockResponse = () => {
 const mockNext = () => jest.fn();
 
 describe('getPieterpadController', () => {
-  it('should return 200 with data, message and status ', () => {
+  it('should return 200 with data, message and status', () => {
     const req = mockRequest();
     const res = mockResponse();
     const next = mockNext();
