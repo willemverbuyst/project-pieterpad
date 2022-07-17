@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "nodemon",
     "start": "ts-node ./src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "test:all": "jest --watch --verbose",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
