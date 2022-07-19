@@ -4,6 +4,7 @@ import { PORT } from './config/constants'
 import { logger } from './config/log'
 import { morganMiddleware } from './config/morgan'
 import { router } from './controllers/routes'
+import { connectWithRetry as connectToMongo } from './integration/database/mongo'
 
 const app = express()
 
@@ -14,4 +15,5 @@ app.use('/v1', router)
 app.listen(PORT, () => {
   logger.info(`${process.env.NODE_ENV || 'developement'} environment`)
   logger.info(`listening on port ${PORT}`)
+  connectToMongo()
 })
