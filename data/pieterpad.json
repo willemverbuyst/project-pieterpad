@@ -1,161 +1,188 @@
 [
   {
+    "stageNumber": 1,
     "from": "Pieterburen",
     "to": "Pieterburen",
     "km": 10,
     "section": "Epilogue"
   },
   {
+    "stageNumber": 1,
     "from": "Pieterburen",
     "to": "Winsum",
     "km": 12,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Winsum",
     "to": "Groningen",
     "km": 22,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Groningen",
     "to": "Southlaren",
     "km": 21,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Southlaren",
     "to": "Rolde",
     "km": 17,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Rolde",
     "to": "Schoonloo",
     "km": 18,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Schoonloo",
     "to": "Sleen",
     "km": 23,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Sleen",
     "to": "Coevorden",
     "km": 21,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Coevorden",
     "to": "Hardenberg",
     "km": 19,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Hardenberg",
     "to": "Ommen",
     "km": 21,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Ommen",
     "to": "Hellendoorn",
     "km": 21,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Hellendoorn",
     "to": "Holten",
     "km": 15,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Holten",
     "to": "Laren",
     "km": 15,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Laren",
     "to": "Vorden",
     "km": 14,
     "section": "North"
   },
   {
+    "stageNumber": 1,
     "from": "Vorden",
     "to": "Zelhem",
     "km": 17,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Zelhem",
     "to": "Braamt",
     "km": 17,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Braamt",
     "to": "Millingen a/d Rijn",
     "km": 24,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Millingen a/d Rijn",
     "to": "Groesbeek",
     "km": 20,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Groesbeek",
     "to": "Gennep",
     "km": 14,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Gennep",
     "to": "Vierlingsbeek",
     "km": 18,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Vierlingsbeek",
     "to": "Swolgen",
     "km": 23,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Swolgen",
     "to": "Venlo",
     "km": 21,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Venlo",
     "to": "Swalmen",
     "km": 23,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Swalmen",
     "to": "Montfort",
     "km": 21,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Montfort",
     "to": "Sittard",
     "km": 23,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Sittard",
     "to": "Strabeek",
     "km": 22,
     "section": "South"
   },
   {
+    "stageNumber": 1,
     "from": "Strabeek",
     "to": "Sint Pietersberg",
     "km": 17,
