@@ -47,6 +47,17 @@ services:
       - /client/node_modules
     networks:
       - dev
+  cypress:
+    image: 'cypress/included:9.5.3'
+    depends_on:
+      - client
+    environment:
+      - CYPRESS_baseUrl=http://client:3000
+    working_dir: /e2e
+    volumes:
+      - ./e2e:/e2e
+    networks:
+      - dev
 
 volumes:
   mongo-db:
