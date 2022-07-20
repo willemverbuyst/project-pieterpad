@@ -6,16 +6,18 @@ export const getPieterpadController = async (
   res: Response,
   _next: NextFunction
 ) => {
-  const stages = await Stage.find()
   try {
+    const stages = await Stage.find()
     res.status(200).send({
       message: 'data for pieterpad',
       data: stages,
+      results: stages.length,
       status: 'succes',
     })
   } catch (error) {
-    res.status(400).json({
+    res.status(500).send({
       status: 'fail',
+      message: 'something went wrong',
     })
   }
 }
