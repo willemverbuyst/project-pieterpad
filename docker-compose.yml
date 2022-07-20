@@ -23,12 +23,28 @@ services:
     env_file:
       - .env
     depends_on:
-      - mongodb-seed
+      - mongodb
     ports:
       - 4000:4000
     volumes:
       - ./server:/server
       - /server/node_modules
+    networks:
+      - dev
+  client:
+    build:
+      context: './client'
+      dockerfile: 'Dockerfile'
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+      - server
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/client
+      - /client/node_modules
     networks:
       - dev
 
