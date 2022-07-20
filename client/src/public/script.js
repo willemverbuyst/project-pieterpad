@@ -8,13 +8,18 @@ window.addEventListener('load', async () => {
     })
     .then((json) => {
       const tableData = json.data
-      console.log('tableData', tableData)
+
       if (tableData) {
-        const epiloog = tableData[0]
-        const tableDataNorth = tableData.filter(
+        const sortedTableData = tableData.sort(
+          (a, b) => a.stageNumber - b.stageNumber
+        )
+        const tableDataPrologue = sortedTableData.filter(
+          (data) => data.section === 'Prologue'
+        )
+        const tableDataNorth = sortedTableData.filter(
           (data) => data.section === 'North'
         )
-        const tableDataSouth = tableData.filter(
+        const tableDataSouth = sortedTableData.filter(
           (data) => data.section === 'South'
         )
 
@@ -40,8 +45,6 @@ window.addEventListener('load', async () => {
           thead.appendChild(row)
         }
 
-        let counter = 0
-
         function createTableRow(dataForTable) {
           const row = document.createElement('tr')
           const header = document.createElement('td')
@@ -55,7 +58,7 @@ window.addEventListener('load', async () => {
             const row = document.createElement('tr')
 
             const stage = document.createElement('td')
-            stage.innerText = counter
+            stage.innerText = data.stageNumber
             stage.classList.add('stage')
 
             const from = document.createElement('td')
@@ -75,16 +78,14 @@ window.addEventListener('load', async () => {
             row.appendChild(to)
             row.appendChild(km)
             tbody.appendChild(row)
-
-            counter += 1
           })
         }
 
         createTitles(['stage', 'from', 'to', 'km'])
-        createTableRow([epiloog])
+        createTableRow(tableDataPrologue)
         createTableRow(tableDataNorth)
         createTableRow(tableDataSouth)
       }
     })
-    .catch((error) => console.error(`Fetch problem: ${error.message}`))
+    .catch((error) => console.error(`Problem: ${error.message}`))
 })
