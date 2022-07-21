@@ -1,11 +1,13 @@
+## SET UP
+
 ```mermaid
-flowchart RL
-  A[Seed]
-  B[(MongoDB)]
-  C[Server]
-  D(((Client)))
-  E[Cypress]
-  F[Crawler]
+flowchart LR
+  A[seed]
+  B[(data)]
+  C[server]
+  D(((client)))
+  E[e2e]
+  F[crawler]
   A-->B
   B<-->C
   C<-->D
