@@ -4,8 +4,6 @@ services:
     image: mongo
     environment:
       - MONGO_INITDB_DATABASE=testdb
-    volumes:
-      - mongo-db:/data/db
     ports:
       - 27017:27017
     networks:
@@ -28,9 +26,6 @@ services:
       - mongodb
     ports:
       - 4000:4000
-    volumes:
-      - ./server:/server
-      - /server/node_modules
     networks:
       - dev
   client:
@@ -43,10 +38,7 @@ services:
       - mongodb
       - server
     ports:
-      - 3000:3000
-    volumes:
-      - ./client:/client
-      - /client/node_modules
+      - 1234:1234
     networks:
       - dev
   cypress:
@@ -54,15 +46,12 @@ services:
     depends_on:
       - client
     environment:
-      - CYPRESS_baseUrl=http://client:3000
+      - CYPRESS_baseUrl=http://client:1234
     working_dir: /e2e
     volumes:
       - ./e2e:/e2e
     networks:
       - dev
-
-volumes:
-  mongo-db:
 
 networks:
   dev:
