@@ -41,17 +41,17 @@ services:
       - 1234:1234
     networks:
       - dev
-  cypress:
-    image: 'cypress/included:9.5.3'
-    depends_on:
-      - client
-    environment:
-      - CYPRESS_baseUrl=http://client:1234
-    working_dir: /e2e
-    volumes:
-      - ./e2e:/e2e
-    networks:
-      - dev
+  # cypress:
+  #   image: 'cypress/included:9.5.3'
+  #   depends_on:
+  #     - client
+  #   environment:
+  #     - CYPRESS_baseUrl=http://client:1234
+  #   working_dir: /e2e
+  #   volumes:
+  #     - ./e2e:/e2e
+  #   networks:
+  #     - dev
 
 networks:
   dev:
