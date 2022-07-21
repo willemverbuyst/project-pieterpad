@@ -20,8 +20,10 @@ services:
     build:
       context: './server'
       dockerfile: 'Dockerfile'
-    env_file:
-      - .env
+    environment:
+      - NODE_ENV=development
+      - PORT_SERVER=4000
+      - API_PREFIX=api/v1/
     depends_on:
       - mongodb
     ports:
@@ -35,8 +37,9 @@ services:
     build:
       context: './client'
       dockerfile: 'Dockerfile'
-    env_file:
-      - .env
+    environment:
+      - NODE_ENV=development
+      - PORT_CLIENT=3000
     depends_on:
       - mongodb
       - server
