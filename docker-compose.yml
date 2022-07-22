@@ -22,6 +22,8 @@ services:
       - NODE_ENV=development
       - PORT_SERVER=4000
       - API_PREFIX=api/v1/
+    volumes:
+      - ./server:/server
     depends_on:
       - mongodb
     ports:
@@ -34,6 +36,8 @@ services:
       dockerfile: 'Dockerfile'
     environment:
       - NODE_ENV=development
+    volumes:
+      - ./client:/client
     depends_on:
       - mongodb
       - server
