@@ -1,8 +1,5 @@
-import { DataForTable } from './business/models'
-import { getDataForTable } from './business/tableData'
-import { createTable } from './ui/table'
-import { createTableHeaders } from './ui/tableHeaders'
-import { createTableRows } from './ui/tableRow'
+import { DataForTable, getDataForTable } from './business'
+import { createTable, createTableHeaders, createTableRows } from './ui'
 
 window.addEventListener('load', async () => {
   try {

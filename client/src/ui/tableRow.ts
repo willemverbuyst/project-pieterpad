@@ -1,4 +1,4 @@
-import { Stage } from '../business/models'
+import { Stage } from '../business'
 
 export const createTableRows = (dataForTable: Stage[]) => {
   const tbody = document.querySelector('tbody')
