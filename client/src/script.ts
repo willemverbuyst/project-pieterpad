@@ -1,99 +1,79 @@
-interface TableData {
-  stageNumber: number
-  from: string
-  to: string
-  km: number
-  section: string
-}
+import { DataForTable, Stage } from './business/models'
+import { getDataForTable } from './business/tableData'
 
 window.addEventListener('load', async () => {
-  fetch('http://localhost:4000/v1/pieterpad')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`)
-      }
-      return response.json()
-    })
-    .then((json) => {
-      const tableData: TableData[] = json.data
+  try {
+    const tableData: DataForTable | null = await getDataForTable()
 
-      if (tableData.length) {
-        const sortedTableData = tableData.sort(
-          (a, b) => a.stageNumber - b.stageNumber
-        )
-        const tableDataPrologue = sortedTableData.filter(
-          (data) => data.section === 'Prologue'
-        )
-        const tableDataNorth = sortedTableData.filter(
-          (data) => data.section === 'North'
-        )
-        const tableDataSouth = sortedTableData.filter(
-          (data) => data.section === 'South'
-        )
+    if (!tableData) {
+      return
+    }
 
-        const table = document.createElement('table')
-        const thead = document.createElement('thead')
-        const tbody = document.createElement('tbody')
+    const { tableHeaders, prologueStages, northStages, southStages } = tableData
 
-        table.appendChild(thead)
-        table.appendChild(tbody)
+    const table = document.createElement('table')
+    const thead = document.createElement('thead')
+    const tbody = document.createElement('tbody')
 
-        document.getElementById('tableContainer')!.appendChild(table)
+    table.appendChild(thead)
+    table.appendChild(tbody)
 
-        function createTitles(titles: string[]) {
-          const row = document.createElement('tr')
+    document.getElementById('tableContainer')!.appendChild(table)
 
-          titles.forEach((title) => {
-            const header = document.createElement('th')
-            header.innerText = title
-            header.classList.add(title)
-            row.appendChild(header)
-          })
+    function createTitles(titles: string[]) {
+      const row = document.createElement('tr')
 
-          thead.appendChild(row)
-        }
+      titles.forEach((title) => {
+        const header = document.createElement('th')
+        header.innerText = title
+        header.classList.add(title)
+        row.appendChild(header)
+      })
 
-        function createTableRow(dataForTable: TableData[]) {
-          const row = document.createElement('tr')
-          const header = document.createElement('td')
-          header.colSpan = 4
-          header.innerText = dataForTable[0].section
-          header.classList.add('header')
-          row.appendChild(header)
-          tbody.appendChild(row)
+      thead.appendChild(row)
+    }
 
-          dataForTable.forEach((data) => {
-            const row = document.createElement('tr')
+    function createTableRow(dataForTable: Stage[]) {
+      const row = document.createElement('tr')
+      const header = document.createElement('td')
+      header.colSpan = 4
+      header.innerText = dataForTable[0].section
+      header.classList.add('header')
+      row.appendChild(header)
+      tbody.appendChild(row)
 
-            const stage = document.createElement('td')
-            stage.innerText = String(data.stageNumber)
-            stage.classList.add('stage')
+      dataForTable.forEach((data) => {
+        const row = document.createElement('tr')
 
-            const from = document.createElement('td')
-            from.innerText = data.from
-            from.classList.add('from')
+        const stage = document.createElement('td')
+        stage.innerText = String(data.stageNumber)
+        stage.classList.add('stage')
 
-            const to = document.createElement('td')
-            to.innerText = data.to
-            to.classList.add('to')
+        const from = document.createElement('td')
+        from.innerText = data.from
+        from.classList.add('from')
 
-            const km = document.createElement('td')
-            km.innerText = String(data.km)
-            km.classList.add('km')
+        const to = document.createElement('td')
+        to.innerText = data.to
+        to.classList.add('to')
 
-            row.appendChild(stage)
-            row.appendChild(from)
-            row.appendChild(to)
-            row.appendChild(km)
-            tbody.appendChild(row)
-          })
-        }
+        const km = document.createElement('td')
+        km.innerText = String(data.km)
+        km.classList.add('km')
 
-        createTitles(['stage', 'from', 'to', 'km'])
-        createTableRow(tableDataPrologue)
-        createTableRow(tableDataNorth)
-        createTableRow(tableDataSouth)
-      }
-    })
-    .catch((error) => console.error(`Problem: ${error.message}`))
+        row.appendChild(stage)
+        row.appendChild(from)
+        row.appendChild(to)
+        row.appendChild(km)
+        tbody.appendChild(row)
+      })
+    }
+
+    createTitles(tableHeaders)
+    createTableRow(prologueStages)
+    createTableRow(northStages)
+    createTableRow(southStages)
+  } catch (error) {
+    console.error(`Problem: ${error}`)
+  }
 })
