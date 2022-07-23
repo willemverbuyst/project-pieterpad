@@ -22,7 +22,7 @@ describe('fetchData', () => {
 
   const server = setupServer(
     rest.get('http://localhost:4000/v1/pieterpad', (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(testStages))
+      return res(ctx.status(200), ctx.json({ data: testStages }))
     })
   )
 
