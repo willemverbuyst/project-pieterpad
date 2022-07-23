@@ -3,10 +3,10 @@ import { Stage } from './models'
 
 export const fetchData = async (): Promise<Stage[] | null> => {
   try {
-    const response: AxiosResponse<Stage[]> = await axios.get(
+    const response: AxiosResponse<{ data: Stage[] }> = await axios.get(
       'http://localhost:4000/v1/pieterpad'
     )
-    const data: Stage[] = response.data
+    const data: Stage[] = response.data.data
 
     return data
   } catch {
