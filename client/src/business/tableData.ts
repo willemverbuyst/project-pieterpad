@@ -4,8 +4,8 @@ import { DataForTable, Stage } from './models'
 import { sortStages } from './sortData'
 
 export const getDataForTable = async (): Promise<DataForTable | null> => {
-  const stages: Stage[] = await fetchData()
-  if (!stages.length) {
+  const stages: Stage[] | null = await fetchData()
+  if (!(stages && stages.length)) {
     return null
   }
 

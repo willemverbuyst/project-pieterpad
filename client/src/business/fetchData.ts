@@ -1,12 +1,14 @@
-export const fetchData = async () => {
+import axios from 'axios'
+import { Stage } from './models'
+
+export const fetchData = async (): Promise<Stage[] | null> => {
   try {
-    const response = await fetch('http://localhost:4000/v1/pieterpad')
+    const response = await axios.get('http://localhost:4000/v1/pieterpad')
 
-    const json = await response.json()
-
-    return json.data
+    return response.data
   } catch (error) {
     console.log('error in fetching data')
+    console.error(error)
     return null
   }
 }
