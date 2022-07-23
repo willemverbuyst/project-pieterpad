@@ -1,5 +1,6 @@
-import fetchMock from 'jest-fetch-mock'
+import axios from 'axios'
 import { fetchData } from './fetchData'
+jest.mock('axios')
 
 describe('fetchData', () => {
   beforeEach(() => {
@@ -24,22 +25,36 @@ describe('fetchData', () => {
   ]
 
   it('should return an array with stages', async () => {
-    fetchMock.mockResponse(JSON.stringify({ data: testStages }))
+    const axiosMock = axios.get as jest.Mock
+    axiosMock.mockResolvedValueOnce({ data: testStages })
     const result = await fetchData()
 
     expect(result).toEqual(testStages)
-    expect(fetch).toHaveBeenCalledTimes(1)
-    expect(fetch).toHaveBeenCalledWith('http://localhost:4000/v1/pieterpad')
+    expect(axiosMock).toHaveBeenCalledTimes(1)
+    expect(axiosMock).toHaveBeenCalledWith('http://localhost:4000/v1/pieterpad')
   })
 
-  it('return null when fetch fails', async () => {
-    fetchMock.mockReject(new Error())
+  it('should return null when fetch fails', async () => {
+    const axiosMock = axios.get as jest.Mock
+    axiosMock.mockRejectedValueOnce(new Error())
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation()
     const result = await fetchData()
 
     expect(result).toEqual(null)
-    expect(fetch).toHaveBeenCalledTimes(1)
-    expect(fetch).toHaveBeenCalledWith('http://localhost:4000/v1/pieterpad')
-    expect(consoleSpy).toHaveBeenLastCalledWith('error in fetching data')
+    expect(axiosMock).toHaveBeenCalledTimes(1)
+    expect(axiosMock).toHaveBeenCalledWith('http://localhost:4000/v1/pieterpad')
+    expect(consoleSpy).toHaveBeenLastCalledWith('fetching data failed: {}')
+  })
+
+  it('should return null when fetch fails', async () => {
+    const axiosMock = axios.get as jest.Mock
+    axiosMock.mockRejectedValue('test')
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation()
+    const result = await fetchData()
+
+    expect(result).toEqual(null)
+    expect(axiosMock).toHaveBeenCalledTimes(1)
+    expect(axiosMock).toHaveBeenCalledWith('http://localhost:4000/v1/pieterpad')
+    expect(consoleSpy).toHaveBeenLastCalledWith('fetching data failed: "test"')
   })
 })

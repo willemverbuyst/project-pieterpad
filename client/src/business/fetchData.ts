@@ -7,8 +7,7 @@ export const fetchData = async (): Promise<Stage[] | null> => {
 
     return response.data
   } catch (error) {
-    console.log('error in fetching data')
-    console.error(error)
+    console.log(`fetching data failed: ${JSON.stringify(error)}`)
     return null
   }
 }
