@@ -1,7 +1,7 @@
 FROM python:3.8
 
-WORKDIR /scripts
+WORKDIR /scraper
 
-COPY ./ /scripts 
+COPY . .
 
 RUN pip install -r requirements.txt
