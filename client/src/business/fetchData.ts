@@ -1,13 +1,16 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { Stage } from './models'
 
 export const fetchData = async (): Promise<Stage[] | null> => {
   try {
-    const response = await axios.get('http://localhost:4000/v1/pieterpad')
+    const response: AxiosResponse<{ data: Stage[] }> = await axios.get(
+      'http://localhost:4000/v1/pieterpad'
+    )
+    const data: Stage[] = response.data.data
 
-    return response.data.data
-  } catch (error) {
-    console.log(`fetching data failed: ${JSON.stringify(error)}`)
+    return data
+  } catch {
+    console.log(`Request failed`)
     return null
   }
 }

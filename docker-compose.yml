@@ -45,6 +45,16 @@ services:
       - 1234:1234
     networks:
       - dev
+  scraper:
+    build:
+      context: './scraper'
+      dockerfile: Dockerfile
+    volumes:
+      - './scraper:/scraper'
+    stdin_open: true
+    command: bash
+    networks:
+      - dev
   # cypress:
   #   image: 'cypress/included:9.5.3'
   #   depends_on:
