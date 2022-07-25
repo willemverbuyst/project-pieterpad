@@ -1,20 +1,28 @@
 const express = require('express')
 const app = express()
-const socketio = require('socket.io')
+const http = require('http')
+const server = http.createServer(app)
+const { Server } = require('socket.io')
+const io = new Server(server)
 
-app.use(express.static(__dirname + '/public'))
-
-const expressServer = app.listen(9000)
-const io = socketio(expressServer)
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
+})
 
 io.on('connection', (socket) => {
-  socket.emit('messageFromTheServer', { data: 'Welcom to the socketio server' })
-  socket.on('messageToServer', (dataFromClient) => {
-    console.log('dataFromClients', dataFromClients)
+  socket.emit('messageFromTheServer', {
+    data: 'Welcome to the socketio server',
+  })
+  socket.on('dataToTheServer', (dataFromClient) => {
+    console.log(dataFromClient.data)
   })
 })
 
-io.of('/admin').on('connection', (_socket) => {
+io.of('/admin').on('connection', (socket) => {
   console.log('someone connected to the admin socket')
-  io.of('/admin').emit('welcome', 'welcome to the admin namespaces')
+  io.of('/admin').emit('welcome', 'welcome to the admin namespace')
+})
+
+server.listen(3000, () => {
+  console.log('listening on *:3000')
 })
