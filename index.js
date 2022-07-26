@@ -20,11 +20,13 @@ io.on('connection', (socket) => {
       endpoint: namespace.endpoint,
     }
   })
+
   socket.emit('namespaceList', namespaceData)
 })
 
-// namespaces.forEach((namespace) => {
-//   io.of(namespace.endpoint).on('connection', (socket) => {
-//     console.log(`${socket.id} has joined ${namespace.endpoint}`)
-//   })
-// })
+namespaces.forEach((namespace) => {
+  io.of(namespace.endpoint).on('connection', (socket) => {
+    console.log(`${socket.id} has joined ${namespace.endpoint}`)
+    socket.emit('namespaceLoadRoom', namespace.rooms)
+  })
+})
