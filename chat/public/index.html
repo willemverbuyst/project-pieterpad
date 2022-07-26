@@ -9,19 +9,6 @@
   <body>
     <h1>Socket io test</h1>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io()
-
-      socket.on('messageFromTheServer', (dataFromTheServer) => {
-        console.log(dataFromTheServer.data)
-        socket.emit('dataToTheServer', { data: 'Hello from the client' })
-      })
-
-      const socketAdmin = io('/admin')
-
-      socketAdmin.on('welcome', (dataFromTheServer) =>
-        console.log(dataFromTheServer)
-      )
-    </script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
