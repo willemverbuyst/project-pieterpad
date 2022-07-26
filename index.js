@@ -8,22 +8,21 @@ var path = require('path')
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res) => {
-  res.sendFile('index.html')
-})
-
 io.on('connection', (socket) => {
+  console.log('CONNECTION someone connected to the main namespace')
   socket.emit('messageFromTheServer', {
-    data: 'Welcome to the socketio server',
+    data: 'Welcome to the main namespace',
   })
-  socket.on('dataToTheServer', (dataFromClient) => {
+  socket.on('messageToTheServer', (dataFromClient) => {
     console.log(dataFromClient.data)
   })
 })
 
 io.of('/admin').on('connection', (socket) => {
-  console.log('someone connected to the admin socket')
-  io.of('/admin').emit('welcome', 'welcome to the admin namespace')
+  console.log('CONNECTION someone connected to the admin namespace')
+  io.of('/admin').emit('adminMessageFromServer', {
+    data: 'Welcome to the admin namespace',
+  })
 })
 
 server.listen(3000, () => {
