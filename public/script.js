@@ -1,7 +1,10 @@
 const socket = io()
-// const socketAdmin = io('http://localhost:9000/admin')
 
 socket.on('messageFromTheServer', (dataFromTheServer) => {
-  console.log('dataFromTheServer', dataFromTheServer)
-  socket.emit('dataToServer', { data: 'Hello from the client' })
+  console.log(dataFromTheServer.data)
+  socket.emit('dataToTheServer', { data: 'Hello from the client' })
 })
+
+const socketAdmin = io('/admin')
+
+socketAdmin.on('welcome', (dataFromTheServer) => console.log(dataFromTheServer))
