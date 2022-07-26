@@ -2,8 +2,8 @@ const Namespace = require('../classes/Namespace')
 const Room = require('../classes/Room')
 
 const prologue = new Namespace(0, 'Prologue', 'P', '/prologue')
-const north = new Namespace(1, 'North', 'P', '/north')
-const south = new Namespace(2, 'South', 'P', '/south')
+const north = new Namespace(1, 'North', 'N', '/north')
+const south = new Namespace(2, 'South', 'S', '/south')
 
 const namespaces = [prologue, north, south]
 
