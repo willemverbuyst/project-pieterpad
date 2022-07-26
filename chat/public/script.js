@@ -22,8 +22,26 @@ socketSouth.on('messageFromServer', (dataFromTheServer) =>
 socket.on('namespaceList', (list) => {
   const namespacesElement = document.getElementById('namespaces')
   namespacesElement.innerHTML = ''
+
   list.forEach(
     (namespace) =>
-      (namespacesElement.innerHTML += `<div class="namespace" ns="${namespace.endpoint}"><span class="namespace__icon>${namespace.icon}</span></div>`)
+      (namespacesElement.innerHTML += `<div class="namespace" ns="${namespace.endpoint}"><span class="namespace__icon">${namespace.icon}</span></div>`)
+  )
+
+  Array.from(document.getElementsByClassName('namespace')).forEach(
+    (element) => {
+      element.addEventListener('click', () => {
+        const namespaceEndpoint = element.getAttribute('ns')
+
+        io(namespaceEndpoint).on('namespaceLoadRoom', (rooms) => {
+          const roomList = document.querySelector('.room-list')
+          roomList.innerHTML = ''
+
+          rooms.forEach((room) => {
+            roomList.innerHTML += `<li>${room.title}</li>`
+          })
+        })
+      })
+    }
   )
 })
