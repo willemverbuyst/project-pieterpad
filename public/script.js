@@ -5,8 +5,25 @@ socket.on('messageFromTheServer', (dataFromTheServer) => {
   socket.emit('messageToTheServer', { data: 'Hello from the client' })
 })
 
-const socketAdmin = io('/admin')
+const socketPrologue = io('/prologue')
+const socketNorth = io('/north')
+const socketSouth = io('/south')
 
-socketAdmin.on('adminMessageFromServer', (dataFromTheServer) =>
+socketPrologue.on('messageFromServer', (dataFromTheServer) =>
   console.log(dataFromTheServer.data)
 )
+socketNorth.on('messageFromServer', (dataFromTheServer) =>
+  console.log(dataFromTheServer.data)
+)
+socketSouth.on('messageFromServer', (dataFromTheServer) =>
+  console.log(dataFromTheServer.data)
+)
+
+socket.on('namespaceList', (list) => {
+  const namespacesElement = document.getElementById('namespaces')
+  namespacesElement.innerHTML = ''
+  list.forEach(
+    (namespace) =>
+      (namespacesElement.innerHTML += `<div class="namespace" ns="${namespace.endpoint}"><span class="namespace__icon>${namespace.icon}</span></div>`)
+  )
+})

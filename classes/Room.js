@@ -1,9 +1,9 @@
 class Room {
-  constructor(id, title, namespace, private = false) {
+  constructor(id, title, namespace, privateRoom = false) {
     this.id = id
     this.title = title
     this.namespace = namespace
-    this.private = private
+    this.privateRoom = privateRoom
     this.history = []
   }
 
