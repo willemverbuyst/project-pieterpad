@@ -1,8 +1,8 @@
 class Namespace {
-  constructor(id, title, image, endpoint) {
+  constructor(id, title, icon, endpoint) {
     this.id = id
     this.title = title
-    this.image = image
+    this.image = icon
     this.endpoint = endpoint
     this.rooms = []
   }
