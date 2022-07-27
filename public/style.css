@@ -42,3 +42,12 @@ body {
 .namespace__icon {
   font-size: 5rem;
 }
+
+ul {
+  text-align: left;
+}
+
+li {
+  list-style-type: none;
+  font-size: 2rem;
+}

@@ -10,7 +10,7 @@ const namespaces = [prologue, north, south]
 prologue.addRoom(new Room(0, 'Stage_1', 'Prologue'))
 
 north.addRoom(new Room(0, 'Stage_2', 'North'))
-north.addRoom(new Room(1, 'Stage_3', 'North'))
+north.addRoom(new Room(1, 'Stage_3', 'North', true))
 north.addRoom(new Room(2, 'Stage_4', 'North'))
 north.addRoom(new Room(4, 'Stage_5', 'North'))
 
