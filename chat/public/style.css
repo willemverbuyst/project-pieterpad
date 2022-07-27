@@ -5,6 +5,7 @@
   --color-4: #72f2eb;
   --color-5: #747e7e;
   --color-grey-light: #ddd;
+  --color-grey-medium: #aaa;
   --color-background: #f1f1f1;
   --color-black: #000;
   --color-white: #fff;
@@ -13,6 +14,8 @@
 html {
   font-size: 62.5%;
 }
+
+
 
 body {
   box-sizing: border-box;
@@ -24,16 +27,48 @@ body {
   background-color: var(--color-background);
 }
 
-.container__chat {
+.container {
   width: 100vw;
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
   justify-content: center;
 }
 
-.namespace {
+.container__chat {
+  width: 50vw;
+  max-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-rows: 4fr 1fr;
+  grid-template-areas: 
+  "namespaces rooms conversation"
+  "namespaces rooms input";
+}
+
+.container__chat--namespaces {
+  grid-area: namespaces;
+  background-color: var(--color-3)
+}
+
+.container__chat--rooms {
+  grid-area: rooms;
+  background-color: var(--color-4)
+}
+
+.container__chat--conversation {
+  grid-area: conversation;
+  background-color: var(--color-grey-light)
+}
+
+.container__chat--input {
+  grid-area: input;
   color: var(--color-white);
-  background-color: var(--color-3);
+  background-color: var( --color-grey-medium)
+}
+
+.namespace {
+  color: var(--color-5);
+  background-color: var(--color-background);
   text-align: left;
   padding: 1rem;
   margin: 2rem;
@@ -45,9 +80,13 @@ body {
 
 ul {
   text-align: left;
+  padding: 0;
+  margin: 0;
 }
 
 li {
   list-style-type: none;
   font-size: 2rem;
+  margin: 1rem;
 }
+
