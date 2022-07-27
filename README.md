@@ -8,10 +8,13 @@ flowchart LR
   D(((client)))
   E[e2e]
   F[crawler]
+  G[Chat]
   A-->B
-  B<-->C
-  C<-->D
-  E-->C
+  C<-->B
+  D<-->C
   E-->D
+  E-->C
+  E-->G
   F-->D
+  C-->G
 ```
