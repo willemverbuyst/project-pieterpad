@@ -32,15 +32,7 @@ socket.on('namespaceList', (list) => {
     (element) => {
       element.addEventListener('click', () => {
         const namespaceEndpoint = element.getAttribute('ns')
-
-        io(namespaceEndpoint).on('namespaceLoadRoom', (rooms) => {
-          const roomList = document.querySelector('.room-list')
-          roomList.innerHTML = ''
-
-          rooms.forEach((room) => {
-            roomList.innerHTML += `<li>${room.title}</li>`
-          })
-        })
+        joinNamespace(namespaceEndpoint)
       })
     }
   )
