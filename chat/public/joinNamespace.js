@@ -23,9 +23,8 @@ function joinNamespace(endpoint) {
   })
 
   namespaceSocket.on('messageToClients', (message) => {
-    document.querySelector(
-      '.conversation-list'
-    ).innerHTML += `<li>${message.text}</li>`
+    document.querySelector('.conversation-list').innerHTML +=
+      buildMessageHTML(message)
   })
 
   document
@@ -36,4 +35,25 @@ function joinNamespace(endpoint) {
 
       namespaceSocket.emit('newMessageToServer', { text: newMessage })
     })
+}
+
+function buildMessageHTML(message) {
+  const messsageHTML = `
+  <li>
+    <div>
+      <div>
+        <div>
+          ${message.userName}
+        </div>
+        <div>
+          ${message.time}
+        </div/>
+      </div>
+    <div>
+      ${message.text}
+    </div/>
+    </div>
+  </li>
+  `
+  return messsageHTML
 }

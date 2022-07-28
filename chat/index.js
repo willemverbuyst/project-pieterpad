@@ -30,9 +30,6 @@ namespaces.forEach((namespace) => {
     namespaceSocket.emit('namespaceLoadRoom', namespace.rooms)
 
     namespaceSocket.on('joinRoom', async (roomToJoin, numbersOfUsers) => {
-      const namespaceRoom = namespace.rooms.find(
-        (room) => room.title === roomToJoin
-      )
       namespaceSocket.join(roomToJoin)
 
       const allSockets = await io
@@ -41,12 +38,35 @@ namespaces.forEach((namespace) => {
         .allSockets()
 
       numbersOfUsers(allSockets.size)
+
+      const namespaceRoom = namespace.rooms.find(
+        (room) => room.title === roomToJoin
+      )
+
+      namespaceSocket.emit('historyCatchUp', namespaceRoom.history)
     })
 
     namespaceSocket.on('newMessageToServer', (message) => {
+      const convertedDate = new Date().toLocaleDateString()
+      const convertedTime = new Date().toLocaleTimeString()
+      const fullMessage = {
+        text: message.text,
+        time: `${convertedDate} -  ${convertedTime}`,
+        userName: 'Sjaak',
+      }
       const roomTitle = [...namespaceSocket.rooms.keys()][1]
-      console.log(roomTitle)
-      io.of(namespace.endpoint).to(roomTitle).emit('messageToClients', message)
+
+      const namespaceRoom = namespace.rooms.find(
+        (room) => room.title === roomTitle
+      )
+
+      namespaceRoom.addMessage(fullMessage)
+
+      // console.log('namespaceRoom.history', namespaceRoom.history)
+
+      io.of(namespace.endpoint)
+        .to(roomTitle)
+        .emit('messageToClients', fullMessage)
     })
   })
 })
