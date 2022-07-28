@@ -42,5 +42,11 @@ namespaces.forEach((namespace) => {
 
       numbersOfUsers(allSockets.size)
     })
+
+    namespaceSocket.on('newMessageToServer', (message) => {
+      const roomTitle = [...namespaceSocket.rooms.keys()][1]
+      console.log(roomTitle)
+      io.of(namespace.endpoint).to(roomTitle).emit('messageToClients', message)
+    })
   })
 })
