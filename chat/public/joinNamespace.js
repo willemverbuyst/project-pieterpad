@@ -23,7 +23,6 @@ function joinNamespace(endpoint) {
   })
 
   namespaceSocket.on('messageToClients', (message) => {
-    console.log(message)
     document.querySelector(
       '.conversation-list'
     ).innerHTML += `<li>${message.text}</li>`
@@ -33,7 +32,8 @@ function joinNamespace(endpoint) {
     .querySelector('.message-form')
     .addEventListener('submit', (event) => {
       event.preventDefault()
-      const newMessage = document.querySelector('#user-input').value
-      socket.emit('newMessageToServer', newMessage)
+      const newMessage = document.querySelector('#user-message').value
+
+      namespaceSocket.emit('newMessageToServer', { text: newMessage })
     })
 }
