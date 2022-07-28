@@ -15,8 +15,6 @@ html {
   font-size: 62.5%;
 }
 
-
-
 body {
   box-sizing: border-box;
   margin: 0;
@@ -38,32 +36,55 @@ body {
   width: 50vw;
   max-height: 80vh;
   display: grid;
-  grid-template-columns: .5fr 1fr 3fr;
-  grid-template-rows: 4fr 1fr;
+  grid-template-columns: .5fr 1fr 3fr .3fr;
+  grid-template-rows: .5fr 4fr .5fr;
   grid-template-areas: 
-  "namespaces rooms conversation"
-  "namespaces rooms input";
+  "namespaces rooms current users"
+  "namespaces rooms conversation users"
+  "namespaces rooms input users";
 }
 
 .container__chat--namespaces {
   grid-area: namespaces;
-  background-color: var(--color-3)
+  background-color: var(--color-3);
 }
 
 .container__chat--rooms {
   grid-area: rooms;
-  background-color: var(--color-4)
+  background-color: var(--color-4);
+}
+
+.container__chat--current-room {
+  grid-area: current;
+  background-color: var( --color-grey-medium);
+}
+
+.container__chat--users {
+  grid-area: users;
+  background-color: var(--color-4);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user {
+  padding: .2rem;
+  font-size: large;
 }
 
 .container__chat--conversation {
   grid-area: conversation;
-  background-color: var(--color-grey-light)
+  background-color: var(--color-grey-light);
 }
 
 .container__chat--input {
   grid-area: input;
-  color: var(--color-white);
-  background-color: var( --color-grey-medium)
+  background-color: var( --color-grey-medium);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .namespace {
@@ -86,7 +107,10 @@ ul {
 
 li {
   list-style-type: none;
-  font-size: 2rem;
   margin: 1rem;
+}
+
+.current-room {
+  padding:1rem;
 }
 
