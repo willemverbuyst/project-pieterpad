@@ -25,8 +25,22 @@ io.on('connection', (socket) => {
 })
 
 namespaces.forEach((namespace) => {
-  io.of(namespace.endpoint).on('connection', (socket) => {
-    console.log(`${socket.id} has joined ${namespace.endpoint}`)
-    socket.emit('namespaceLoadRoom', namespace.rooms)
+  io.of(namespace.endpoint).on('connection', (namespaceSocket) => {
+    console.log(`${namespaceSocket.id} has joined ${namespace.endpoint}`)
+    namespaceSocket.emit('namespaceLoadRoom', namespace.rooms)
+
+    namespaceSocket.on('joinRoom', async (roomToJoin, numbersOfUsers) => {
+      const namespaceRoom = namespace.rooms.find(
+        (room) => room.title === roomToJoin
+      )
+      namespaceSocket.join(roomToJoin)
+
+      const allSockets = await io
+        .of(namespace.endpoint)
+        .in(roomToJoin)
+        .allSockets()
+
+      numbersOfUsers(allSockets.size)
+    })
   })
 })

@@ -1,11 +1,12 @@
 function joinNamespace(endpoint) {
-  io(endpoint).on('namespaceLoadRoom', (rooms) => {
+  namespaceSocket = io(endpoint)
+  namespaceSocket.on('namespaceLoadRoom', (rooms) => {
     const roomList = document.querySelector('.room-list')
     roomList.innerHTML = ''
 
     rooms.forEach((room) => {
       const privateRoom = room.privateRoom ? '🔐' : '🌐'
-      roomList.innerHTML += `<li class="room"><span>${privateRoom}</span>${room.title}</li>`
+      roomList.innerHTML += `<li class="room"><span class="room__icon">${privateRoom}</span><span id="room__name">${room.title}</span></li>`
     })
 
     const roomNodes = document.getElementsByClassName('room')
@@ -14,5 +15,25 @@ function joinNamespace(endpoint) {
         console.log(e.target)
       })
     })
+
+    const topRoom = document.getElementById('room__name')
+    const topRoomName = topRoom.innerText
+
+    joinRoom(topRoomName)
   })
+
+  namespaceSocket.on('messageToClients', (message) => {
+    console.log(message)
+    document.querySelector(
+      '.conversation-list'
+    ).innerHTML += `<li>${message.text}</li>`
+  })
+
+  document
+    .querySelector('.message-form')
+    .addEventListener('submit', (event) => {
+      event.preventDefault()
+      const newMessage = document.querySelector('#user-input').value
+      socket.emit('newMessageToServer', newMessage)
+    })
 }

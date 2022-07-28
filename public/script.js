@@ -1,4 +1,5 @@
 const socket = io()
+let namespaceSocket = ''
 
 socket.on('messageFromTheServer', (dataFromTheServer) => {
   console.log(dataFromTheServer.data)

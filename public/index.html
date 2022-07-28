@@ -13,19 +13,17 @@
       <div class="container__chat">
         <div id="namespaces" class="container__chat--namespaces"></div>
         <div class="container__chat--rooms">
-          <h3>rooms</h3>
           <ul class="room-list"></ul>
         </div>
         <div id="namespaces" class="container__chat--conversation">
-          adsfadad
+          <h2 class="current-room__title"></h2>
+          <span class="current-room__users"></span>
+          <ul class="conversation-list"></ul>
         </div>
         <div class="container__chat--input">
-          <div>
-            <label>what's up wanderer</label>
-          </div>
-          <div>
-            <input type="text" />
-          </div>
+          <form class="message-form">
+            <input id="user-input" type="text" placeholder="whazup wander?" />
+          </form>
         </div>
       </div>
     </div>
@@ -33,5 +31,6 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
     <script src="joinNamespace.js"></script>
+    <script src="joinRoom.js"></script>
   </body>
 </html>
