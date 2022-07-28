@@ -7,10 +7,12 @@ const io = new Server(server)
 const path = require('path')
 const namespaces = require('./data/namespaces')
 
+const PORT = process.env.PORT || 9000
+
 app.use(express.static(path.join(__dirname, 'public')))
 
-server.listen(8000, () => {
-  console.log('listening on *:8000')
+server.listen(PORT, () => {
+  console.log(`listening on ${PORT}`)
 })
 
 io.on('connection', (socket) => {
