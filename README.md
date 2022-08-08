@@ -18,3 +18,9 @@ flowchart LR
   F-->D
   C-->G
 ```
+
+#
+
+> docker-compose build
+
+> docker-compose up

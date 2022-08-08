@@ -9,15 +9,17 @@ services:
     networks:
       - dev
   mongodb-seed:
-    build: ./data
+    build:
+      context: ./data
+      dockerfile: Dockerfile
     depends_on:
       - mongodb
     networks:
       - dev
   server:
     build:
-      context: './server'
-      dockerfile: 'Dockerfile'
+      context: ./server
+      dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
       - PORT_SERVER=4000
@@ -32,8 +34,8 @@ services:
       - dev
   client:
     build:
-      context: './client'
-      dockerfile: 'Dockerfile'
+      context: ./client
+      dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
     volumes:
@@ -47,10 +49,10 @@ services:
       - dev
   scraper:
     build:
-      context: './scraper'
+      context: ./scraper
       dockerfile: Dockerfile
     volumes:
-      - './scraper:/scraper'
+      - ./scraper:/scraper
     stdin_open: true
     command: bash
     networks:
