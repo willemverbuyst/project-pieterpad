@@ -17,4 +17,10 @@ function joinRoom(roomName) {
 
     messageList.scrollTo(0, messageList.scrollHeight)
   })
+
+  namespaceSocket.on('updateUsers', (numberOfUsers) => {
+    document.querySelector('.current-room__title').innerHTML = roomName
+    document.querySelector('.container__chat--users').innerHTML =
+      `<span class="user">&#128513;</span>`.repeat(numberOfUsers)
+  })
 }
