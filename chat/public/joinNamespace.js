@@ -1,18 +1,24 @@
 function joinNamespace(endpoint) {
-  namespaceSocket = io(endpoint)
+  if (namespaceSocket) {
+    namespaceSocket.close()
+    document
+      .querySelector('#user-message')
+      .removeEventListener('submit', formSubmission)
+  }
+  namespaceSocket = io(`http://localhost:9000${endpoint}`)
   namespaceSocket.on('namespaceLoadRoom', (rooms) => {
     const roomList = document.querySelector('.room-list')
     roomList.innerHTML = ''
 
     rooms.forEach((room) => {
       const privateRoom = room.privateRoom ? '🔐' : '🌐'
-      roomList.innerHTML += `<li class="room"><span class="room__icon">${privateRoom}</span><span id="room__name">${room.title}</span></li>`
+      roomList.innerHTML += `<li class="room"><span id="room__name">${room.title}</span></li>`
     })
 
     const roomNodes = document.getElementsByClassName('room')
     Array.from(roomNodes).forEach((room) => {
       room.addEventListener('click', (e) => {
-        console.log(e.target)
+        joinRoom(e.target.innerText)
       })
     })
 
@@ -29,12 +35,15 @@ function joinNamespace(endpoint) {
 
   document
     .querySelector('.message-form')
-    .addEventListener('submit', (event) => {
-      event.preventDefault()
-      const newMessage = document.querySelector('#user-message').value
+    .addEventListener('submit', formSubmission)
+}
 
-      namespaceSocket.emit('newMessageToServer', { text: newMessage })
-    })
+function formSubmission(event) {
+  event.preventDefault()
+  const newMessage = document.querySelector('#user-message').value
+
+  namespaceSocket.emit('newMessageToServer', { text: newMessage })
+  // document.querySelector('#user-message').value = ''
 }
 
 function buildMessageHTML(message) {

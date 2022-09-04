@@ -28,24 +28,38 @@ io.on('connection', (socket) => {
 
 namespaces.forEach((namespace) => {
   io.of(namespace.endpoint).on('connection', (namespaceSocket) => {
-    console.log(`${namespaceSocket.id} has joined ${namespace.endpoint}`)
-    namespaceSocket.emit('namespaceLoadRoom', namespace.rooms)
+    // console.log(namespaceSocket.handshake)
+    // const userName = namespaceSocket.handshake.query.userName
 
-    namespaceSocket.on('joinRoom', async (roomToJoin, numbersOfUsers) => {
+    namespaceSocket.emit('namespaceLoadRoom', namespace.rooms)
+    namespaceSocket.on('joinRoom', (roomToJoin, numbersOfUsers) => {
+      const roomTitle = [...namespaceSocket.rooms.values()][1]
+      console.log('namespaceSocket', namespaceSocket)
+      if (roomTitle && roomTitle !== roomToJoin) {
+        namespaceSocket.leave(roomTitle)
+        updateUsersInRoom(namespace, roomTitle)
+      }
+
       namespaceSocket.join(roomToJoin)
 
-      const allSockets = await io
-        .of(namespace.endpoint)
-        .in(roomToJoin)
-        .allSockets()
+      const allSockets = io.of(namespace.endpoint).in(roomToJoin).allSockets()
 
       numbersOfUsers(allSockets.size)
 
-      const namespaceRoom = namespace.rooms.find(
-        (room) => room.title === roomToJoin
-      )
+      const namespaceRoom = namespace.rooms.find((room) => {
+        return room.title === roomToJoin
+      })
 
-      namespaceSocket.emit('historyCatchUp', namespaceRoom.history)
+      console.log('roomToJoin', roomToJoin)
+      // console.log(
+      //   'namespaceRoom.rooms.map(r => r.title)',
+      //   namespace.rooms.map((r) => r.title)
+      // )
+
+      if (namespaceRoom) {
+        namespaceSocket.emit('historyCatchUp', namespaceRoom.history)
+        updateUsersInRoom(namespace, roomToJoin)
+      }
     })
 
     namespaceSocket.on('newMessageToServer', (message) => {
@@ -64,11 +78,20 @@ namespaces.forEach((namespace) => {
 
       namespaceRoom.addMessage(fullMessage)
 
-      // console.log('namespaceRoom.history', namespaceRoom.history)
-
       io.of(namespace.endpoint)
         .to(roomTitle)
         .emit('messageToClients', fullMessage)
     })
   })
 })
+
+function updateUsersInRoom(namespace, room) {
+  io.of(namespace.endpoint)
+    .in(room)
+    .allSockets()
+    .then((clients) => {
+      io.of(namespace.endpoint)
+        .in(room)
+        .emit('updateUsers', Array.from(clients).length)
+    })
+}
