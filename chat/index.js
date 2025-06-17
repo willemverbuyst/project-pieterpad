@@ -28,14 +28,12 @@ io.on('connection', (socket) => {
 
 namespaces.forEach((namespace) => {
   io.of(namespace.endpoint).on('connection', (namespaceSocket) => {
-    // console.log(namespaceSocket.handshake)
-    // const userName = namespaceSocket.handshake.query.userName
-
+    // console.log('namespaces :>> ', namespaceSocket)
     namespaceSocket.emit('namespaceLoadRoom', namespace.rooms)
     namespaceSocket.on('joinRoom', (roomToJoin, numbersOfUsers) => {
       const roomTitle = [...namespaceSocket.rooms.values()][1]
-      console.log('namespaceSocket', namespaceSocket)
-      if (roomTitle && roomTitle !== roomToJoin) {
+
+      if (roomTitle) {
         namespaceSocket.leave(roomTitle)
         updateUsersInRoom(namespace, roomTitle)
       }
@@ -50,7 +48,7 @@ namespaces.forEach((namespace) => {
         return room.title === roomToJoin
       })
 
-      console.log('roomToJoin', roomToJoin)
+      // console.log('roomToJoin', roomToJoin)
       // console.log(
       //   'namespaceRoom.rooms.map(r => r.title)',
       //   namespace.rooms.map((r) => r.title)
@@ -60,6 +58,12 @@ namespaces.forEach((namespace) => {
         namespaceSocket.emit('historyCatchUp', namespaceRoom.history)
         updateUsersInRoom(namespace, roomToJoin)
       }
+    })
+
+    namespaceSocket.on('disconnect', () => {
+      const roomTitle = [...namespaceSocket.rooms.values()][1]
+      console.log('object :>> ', roomTitle)
+      updateUsersInRoom(namespace, roomTitle)
     })
 
     namespaceSocket.on('newMessageToServer', (message) => {

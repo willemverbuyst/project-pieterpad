@@ -12,10 +12,10 @@ function joinNamespace(endpoint) {
 
     rooms.forEach((room) => {
       const privateRoom = room.privateRoom ? '🔐' : '🌐'
-      roomList.innerHTML += `<li class="room"><span id="room__name">${room.title}</span></li>`
+      roomList.innerHTML += `<li class="room"><span>${privateRoom}</span>&nbsp;<span id="room__name" class="room_title">${room.title}</span></li>`
     })
 
-    const roomNodes = document.getElementsByClassName('room')
+    const roomNodes = document.getElementsByClassName('room_title')
     Array.from(roomNodes).forEach((room) => {
       room.addEventListener('click', (e) => {
         joinRoom(e.target.innerText)
@@ -43,7 +43,7 @@ function formSubmission(event) {
   const newMessage = document.querySelector('#user-message').value
 
   namespaceSocket.emit('newMessageToServer', { text: newMessage })
-  // document.querySelector('#user-message').value = ''
+  document.querySelector('#user-message').value = ''
 }
 
 function buildMessageHTML(message) {

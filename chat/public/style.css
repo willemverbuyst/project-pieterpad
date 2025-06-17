@@ -67,6 +67,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .user {
   padding: 0.2rem;
   font-size: large;
@@ -87,12 +88,15 @@ body {
   align-items: center;
 }
 
-.namespace {
+.namespace,
+.room {
   color: var(--color-5);
   background-color: var(--color-background);
   text-align: left;
   padding: 1rem;
   margin: 2rem;
+  border: 2px solid var(--color-5);
+  border-radius: 3px;
 }
 
 .namespace__icon {
